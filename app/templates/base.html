@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Python Learner{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="prompt">&gt;&gt;&gt;</span>
+      <span class="brand">python-learner</span>
+    </div>
+    <nav>
+      <a href="/topics" class="nav-item {% if request.url.path.startswith('/topics') %}active{% endif %}">
+        <span class="nav-prompt">&gt;</span> topics
+      </a>
+      <a href="/plans" class="nav-item {% if request.url.path.startswith('/plans') %}active{% endif %}">
+        <span class="nav-prompt">&gt;</span> plans
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/api/docs" class="nav-item small" target="_blank">api docs ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-content">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<section class="section" id="attempt-history">
+  <h2 class="section-title">Attempt History
+    <span class="count-badge">{{ exercise.attempts | length }}</span>
+  </h2>
+  {% if not exercise.attempts %}
+    <div class="empty-state small">
+      <p class="empty-sub">No attempts yet.</p>
+    </div>
+  {% else %}
+    <div class="attempt-list">
+      {% for attempt in exercise.attempts | reverse %}
+      <div class="attempt-card">
+        <div class="attempt-header">
+          <span class="badge badge-status-{{ attempt.status }}">{{ attempt.status }}</span>
+          <span class="attempt-date">{{ attempt.submitted_at.strftime('%b %d, %H:%M') }}</span>
+        </div>
+        {% if attempt.notes %}
+          <p class="attempt-notes">{{ attempt.notes }}</p>
+        {% endif %}
+        <details>
+          <summary class="attempt-code-toggle">View code</summary>
+          <pre class="code-block small mt">{{ attempt.code }}</pre>
+        </details>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>

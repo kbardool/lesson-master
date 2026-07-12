@@ -1,0 +1,63 @@
+<div id="lesson-panel-{{ level }}">
+  {% if lesson_error %}
+    <div class="error-msg">⚠ {{ lesson_error }}</div>
+  {% endif %}
+
+  {% if lesson %}
+    {# ── View mode ── #}
+    <div id="lesson-view-{{ level }}">
+      <div class="lesson-content markdown-body">
+        {{ lesson.content | markdown }}
+      </div>
+      <div class="lesson-view-actions">
+        <button class="btn btn-ghost btn-sm"
+                onclick="showLessonEdit('{{ level }}')">Edit</button>
+        <form hx-post="/topics/{{ topic.slug }}/generate-lesson"
+              hx-target="#lesson-panel-{{ level }}"
+              hx-swap="outerHTML"
+              hx-indicator="#lesson-spinner-{{ level }}"
+              hx-confirm="Regenerate the {{ level }} lesson? This will overwrite the current content."
+              style="display:inline">
+          <input type="hidden" name="level" value="{{ level }}">
+          <button type="submit" class="btn btn-ai btn-sm">✨ Regenerate</button>
+          <span id="lesson-spinner-{{ level }}" class="htmx-indicator spinner"></span>
+        </form>
+        <button class="btn btn-danger btn-sm"
+                hx-delete="/topics/{{ topic.slug }}/lesson/{{ level }}"
+                hx-target="#lesson-panel-{{ level }}"
+                hx-swap="outerHTML"
+                hx-confirm="Delete the {{ level }} lesson?">Delete</button>
+      </div>
+    </div>
+
+    {# ── Edit mode ── #}
+    <div id="lesson-edit-{{ level }}" style="display:none">
+      <form hx-post="/topics/{{ topic.slug }}/lesson/{{ level }}/save"
+            hx-target="#lesson-panel-{{ level }}"
+            hx-swap="outerHTML">
+        <textarea name="content" class="code-input lesson-editor" rows="20">{{ lesson.content | e }}</textarea>
+        <div class="form-actions" style="margin-top:.75rem">
+          <button type="submit" class="btn btn-primary btn-sm">Save</button>
+          <button type="button" class="btn btn-ghost btn-sm"
+                  onclick="hideLessonEdit('{{ level }}')">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+  {% else %}
+    {# ── Empty state ── #}
+    <div class="empty-state small">
+      <p class="empty-sub">No {{ level }} lesson yet.</p>
+      <form hx-post="/topics/{{ topic.slug }}/generate-lesson"
+            hx-target="#lesson-panel-{{ level }}"
+            hx-swap="outerHTML"
+            hx-indicator="#lesson-spinner-{{ level }}">
+        <input type="hidden" name="level" value="{{ level }}">
+        <button type="submit" class="btn btn-ai">
+          ✨ Generate {{ level | capitalize }} Lesson
+        </button>
+        <span id="lesson-spinner-{{ level }}" class="htmx-indicator spinner"></span>
+      </form>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,29 @@
+<div id="exercise-list">
+  {% if not topic.exercises %}
+    <div class="empty-state small">
+      <p class="empty-sub">No exercises yet. Add one above.</p>
+    </div>
+  {% else %}
+    <div class="exercise-list">
+      {% for ex in topic.exercises %}
+      <div class="exercise-row" id="exercise-{{ ex.id }}">
+        <div class="exercise-row-left">
+          <span class="status-dot status-{{ ex.status_label }}" title="{{ ex.status_label }}"></span>
+          <a href="/exercises/{{ ex.id }}" class="exercise-title">{{ ex.title }}</a>
+          <span class="badge badge-{{ ex.difficulty }} small">{{ ex.difficulty }}</span>
+        </div>
+        <div class="exercise-row-right">
+          <span class="attempt-count">{{ ex.attempts | length }} attempt{{ ex.attempts | length | pluralize }}</span>
+          <button class="btn btn-danger btn-sm"
+                  hx-delete="/exercises/{{ ex.id }}"
+                  hx-target="#exercise-{{ ex.id }}"
+                  hx-swap="outerHTML"
+                  hx-confirm="Delete exercise '{{ ex.title }}'?">
+            ×
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

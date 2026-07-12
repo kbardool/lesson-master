@@ -1,0 +1,55 @@
+# --- Python ---
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- uv ---
+# uv stores its own resolved lockfile; keep uv.lock committed for apps,
+# but you may want to ignore it for libraries. Uncomment if desired:
+# uv.lock
+
+# uv-managed Python version pin (optional to ignore; keep if you want
+# to enforce a specific interpreter version for all contributors)
+# .python-version
+
+# --- Testing / coverage ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Database ---
+*.db
+# --- Miscellaneous ---
+*.old
+*.old2

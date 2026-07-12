@@ -1,0 +1,105 @@
+<div id="topic-tree">
+  {% if not plans and not orphan_topics %}
+    <div class="empty-state">
+      <p class="empty-title">No topics yet.</p>
+      <p class="empty-sub">Add your first topic above to get started.</p>
+    </div>
+
+  {% else %}
+
+    {% for plan in plans %}
+      {% if plan.items %}
+      <div class="plan-group">
+        <div class="plan-group-header">
+          <a href="/plans/{{ plan.id }}" class="plan-group-title">{{ plan.name }}</a>
+          <div class="plan-group-meta">
+            <div class="progress-bar" style="width:120px">
+              <div class="progress-fill" style="width:{{ plan.completion_pct }}%"></div>
+            </div>
+            <span class="progress-label">{{ plan.done_count }}/{{ plan.item_count }}</span>
+            <span class="badge badge-plan-{{ plan.status }}">{{ plan.status }}</span>
+          </div>
+        </div>
+
+        <div class="topic-grid">
+          {% for item in plan.items %}
+            {% set topic = item.topic %}
+            <div class="topic-card" id="topic-{{ topic.id }}">
+              <div class="topic-card-header">
+                <div style="display:flex; align-items:center; gap:.5rem; min-width:0">
+                  <span class="status-dot status-{{ item.status }}" title="{{ item.status | replace('_',' ') }}"></span>
+                  <a href="/topics/{{ topic.slug }}" class="topic-name">{{ topic.name }}</a>
+                </div>
+                <div class="topic-badges">
+                  <span class="badge badge-{{ topic.difficulty }}">{{ topic.difficulty }}</span>
+                  {% if topic.exercise_count > 0 %}
+                    <span class="badge badge-neutral">{{ topic.passed_exercise_count }}/{{ topic.exercise_count }} ex</span>
+                  {% endif %}
+                </div>
+              </div>
+              {% if topic.description %}
+                <p class="topic-desc">{{ topic.description }}</p>
+              {% endif %}
+              {% if topic.tag_list %}
+                <div class="tag-row">
+                  {% for tag in topic.tag_list %}<span class="tag">{{ tag }}</span>{% endfor %}
+                </div>
+              {% endif %}
+              <div class="topic-card-footer">
+                <button class="btn btn-danger btn-sm"
+                        hx-delete="/topics/{{ topic.id }}"
+                        hx-target="#topic-{{ topic.id }}"
+                        hx-swap="outerHTML"
+                        hx-confirm="Delete '{{ topic.name }}' and all its exercises?">
+                  Delete
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if orphan_topics %}
+    <div class="plan-group">
+      <div class="plan-group-header">
+        <span class="plan-group-title muted">Other Topics</span>
+      </div>
+      <div class="topic-grid">
+        {% for topic in orphan_topics %}
+        <div class="topic-card" id="topic-{{ topic.id }}">
+          <div class="topic-card-header">
+            <a href="/topics/{{ topic.slug }}" class="topic-name">{{ topic.name }}</a>
+            <div class="topic-badges">
+              <span class="badge badge-{{ topic.difficulty }}">{{ topic.difficulty }}</span>
+              {% if topic.exercise_count > 0 %}
+                <span class="badge badge-neutral">{{ topic.passed_exercise_count }}/{{ topic.exercise_count }} ex</span>
+              {% endif %}
+            </div>
+          </div>
+          {% if topic.description %}
+            <p class="topic-desc">{{ topic.description }}</p>
+          {% endif %}
+          {% if topic.tag_list %}
+            <div class="tag-row">
+              {% for tag in topic.tag_list %}<span class="tag">{{ tag }}</span>{% endfor %}
+            </div>
+          {% endif %}
+          <div class="topic-card-footer">
+            <button class="btn btn-danger btn-sm"
+                    hx-delete="/topics/{{ topic.id }}"
+                    hx-target="#topic-{{ topic.id }}"
+                    hx-swap="outerHTML"
+                    hx-confirm="Delete '{{ topic.name }}' and all its exercises?">
+              Delete
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  {% endif %}
+</div>

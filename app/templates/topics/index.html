@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Topics · Python Learner{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Topics</h1>
+  <button class="btn btn-primary" onclick="toggleForm('add-topic-form')">+ Add Topic</button>
+</div>
+
+<div id="add-topic-form" class="card form-card" style="display:none">
+  <h2 class="card-title">New Topic</h2>
+  <form hx-post="/topics/"
+        hx-target="#topic-tree"
+        hx-swap="outerHTML"
+        hx-on::after-request="toggleForm('add-topic-form'); this.reset()">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" required placeholder="e.g. Decorators">
+      </div>
+      <div class="form-group">
+        <label>Difficulty</label>
+        <select name="difficulty">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Parent topic <span class="optional">(optional)</span></label>
+        <select name="parent_id">
+          <option value="">— none (top-level) —</option>
+          {% for t in all_topics %}
+            <option value="{{ t.id }}">{{ t.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tags <span class="optional">(comma-separated)</span></label>
+        <input type="text" name="tags" placeholder="e.g. stdlib, functional">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description <span class="optional">(optional)</span></label>
+      <textarea name="description" rows="2" placeholder="Brief overview of the topic"></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Create Topic</button>
+      <button type="button" class="btn btn-ghost" onclick="toggleForm('add-topic-form')">Cancel</button>
+    </div>
+  </form>
+</div>
+
+{% include "partials/topic_list.html" %}
+
+<script>
+function toggleForm(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+{% endblock %}

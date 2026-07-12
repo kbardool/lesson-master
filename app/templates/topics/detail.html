@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block title %}{{ topic.name }} · Python Learner{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    {% if topic.parent %}
+      <a href="/topics/{{ topic.parent.slug }}" class="breadcrumb">{{ topic.parent.name }}</a>
+      <span class="breadcrumb-sep">/</span>
+    {% endif %}
+    <h1>{{ topic.name }}</h1>
+  </div>
+  <span class="badge badge-{{ topic.difficulty }} large">{{ topic.difficulty }}</span>
+</div>
+
+{% if topic.description %}
+  <p class="topic-description">{{ topic.description }}</p>
+{% endif %}
+
+{% if topic.tag_list %}
+  <div class="tag-row mb">
+    {% for tag in topic.tag_list %}<span class="tag">{{ tag }}</span>{% endfor %}
+  </div>
+{% endif %}
+
+{% if topic.children %}
+<section class="section">
+  <h2 class="section-title">Subtopics</h2>
+  <div class="subtopic-grid">
+    {% for child in topic.children %}
+      <a href="/topics/{{ child.slug }}" class="subtopic-card">
+        <span class="subtopic-card-name">{{ child.name }}</span>
+        <span class="badge badge-{{ child.difficulty }}">{{ child.difficulty }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ── Lesson ──────────────────────────────────────────── -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Lesson</h2>
+    <div class="level-tabs">
+      <button class="level-tab active" id="tab-basic"
+              onclick="switchLevel('basic')">Basic</button>
+      <button class="level-tab" id="tab-intermediate"
+              onclick="switchLevel('intermediate')">Intermediate</button>
+      <button class="level-tab" id="tab-advanced"
+              onclick="switchLevel('advanced')">Advanced</button>
+    </div>
+  </div>
+
+  {% for level in ['basic', 'intermediate', 'advanced'] %}
+    {% set lesson = topic.lessons_by_level.get(level) %}
+    <div class="lesson-level-wrap"
+         id="lesson-wrap-{{ level }}"
+         style="{{ 'display:none' if not loop.first else '' }}">
+      {% include "partials/lesson_panel.html" %}
+    </div>
+  {% endfor %}
+</section>
+
+<!-- ── Exercises ─────────────────────────────────────── -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Exercises
+      <span class="count-badge">{{ topic.passed_exercise_count }}/{{ topic.exercise_count }}</span>
+    </h2>
+    <div style="display:flex; gap:.5rem; align-items:center">
+
+      <!-- AI Generate -->
+      <form hx-post="/topics/{{ topic.slug }}/generate-exercises"
+            hx-target="#exercise-list"
+            hx-swap="outerHTML"
+            hx-indicator="#gen-indicator"
+            style="display:flex; gap:.4rem; align-items:center">
+        <select name="count" class="count-select">
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+        <button type="submit" class="btn btn-ai">✨ Generate</button>
+        <span id="gen-indicator" class="htmx-indicator spinner" title="Generating..."></span>
+      </form>
+
+      <button class="btn btn-primary" onclick="toggleForm('add-exercise-form')">+ Add</button>
+    </div>
+  </div>
+
+  <div id="add-exercise-form" class="card form-card" style="display:none">
+    <h3 class="card-title">New Exercise</h3>
+    <form hx-post="/exercises/"
+          hx-target="#exercise-list"
+          hx-swap="outerHTML"
+          hx-on::after-request="toggleForm('add-exercise-form'); this.reset()">
+      <input type="hidden" name="topic_id" value="{{ topic.id }}">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" required placeholder="e.g. Write a decorator that logs calls">
+        </div>
+        <div class="form-group">
+          <label>Difficulty</label>
+          <select name="difficulty">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Prompt</label>
+        <textarea name="prompt" rows="3" required placeholder="Describe what the learner should implement..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Starter code <span class="optional">(optional)</span></label>
+          <textarea name="starter_code" rows="4" class="code-input" placeholder="def my_function():&#10;    pass"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Reference solution <span class="optional">(optional)</span></label>
+          <textarea name="reference_solution" rows="4" class="code-input" placeholder="# Your solution here"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Add Exercise</button>
+        <button type="button" class="btn btn-ghost" onclick="toggleForm('add-exercise-form')">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  {% include "partials/exercise_list.html" %}
+</section>
+
+<script>
+function toggleForm(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+const LEVELS = ['basic', 'intermediate', 'advanced'];
+
+function switchLevel(level) {
+  LEVELS.forEach(l => {
+    document.getElementById('lesson-wrap-' + l).style.display = l === level ? '' : 'none';
+    document.getElementById('tab-' + l).classList.toggle('active', l === level);
+  });
+}
+
+function showLessonEdit(level) {
+  document.getElementById('lesson-view-' + level).style.display = 'none';
+  document.getElementById('lesson-edit-' + level).style.display = '';
+}
+
+function hideLessonEdit(level) {
+  document.getElementById('lesson-edit-' + level).style.display = 'none';
+  document.getElementById('lesson-view-' + level).style.display = '';
+}
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+[project]
+name = "python-learner"
+version = "0.1.0"
+description = "Python curriculum tracker"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.29.0",
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.9",
+    "anthropic>=0.30.0",
+    "markdown>=3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",   # for FastAPI TestClient
+]

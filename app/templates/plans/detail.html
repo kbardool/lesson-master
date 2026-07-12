@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ plan.name }} · Python Learner{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <a href="/plans" class="breadcrumb">Plans</a>
+    <span class="breadcrumb-sep">/</span>
+    <h1>{{ plan.name }}</h1>
+  </div>
+  <span class="badge badge-plan-{{ plan.status }} large">{{ plan.status }}</span>
+</div>
+
+{% if plan.description %}
+  <p class="topic-description">{{ plan.description }}</p>
+{% endif %}
+
+<!-- Overall progress -->
+<div class="plan-progress-bar-large">
+  <div class="progress-bar large">
+    <div class="progress-fill" style="width: {{ plan.completion_pct }}%"></div>
+  </div>
+  <span class="progress-label">{{ plan.completion_pct }}% complete · {{ plan.done_count }}/{{ plan.item_count }} topics done</span>
+</div>
+
+<!-- Add topic -->
+<div class="section-header mt">
+  <h2 class="section-title">Topics</h2>
+  <button class="btn btn-primary" onclick="toggleForm('add-item-form')">+ Add Topic</button>
+</div>
+
+<div id="add-item-form" class="card form-card" style="display:none">
+  <form hx-post="/plans/{{ plan.id }}/items"
+        hx-target="#plan-items"
+        hx-swap="outerHTML"
+        hx-on::after-request="toggleForm('add-item-form'); this.reset()">
+    <div class="form-row">
+      <div class="form-group grow">
+        <label>Topic</label>
+        <select name="topic_id" required>
+          <option value="">— select a topic —</option>
+          {% for t in all_topics %}
+            <option value="{{ t.id }}">{{ t.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions inline">
+        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-ghost" onclick="toggleForm('add-item-form')">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% include "partials/plan_items.html" %}
+
+<script>
+function toggleForm(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+{% endblock %}

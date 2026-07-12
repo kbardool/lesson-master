@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}{{ exercise.title }} · Python Learner{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <a href="/topics/{{ exercise.topic.slug }}" class="breadcrumb">{{ exercise.topic.name }}</a>
+    <span class="breadcrumb-sep">/</span>
+    <h1>{{ exercise.title }}</h1>
+  </div>
+  <div style="display:flex; gap:.5rem; align-items:center">
+    <span class="badge badge-{{ exercise.difficulty }}">{{ exercise.difficulty }}</span>
+    <span class="badge badge-status-{{ exercise.status_label }}">{{ exercise.status_label }}</span>
+  </div>
+</div>
+
+<div class="two-col">
+
+  <!-- Left: prompt + solution -->
+  <div>
+    <section class="section">
+      <h2 class="section-title">Prompt</h2>
+      <div class="card prose">{{ exercise.prompt }}</div>
+    </section>
+
+    {% if exercise.starter_code %}
+    <section class="section">
+      <h2 class="section-title">Starter Code</h2>
+      <pre class="code-block">{{ exercise.starter_code }}</pre>
+    </section>
+    {% endif %}
+
+    <!-- Submit attempt -->
+    <section class="section">
+      <h2 class="section-title">Your Solution</h2>
+      <form hx-post="/exercises/{{ exercise.id }}/attempts"
+            hx-target="#attempt-history"
+            hx-swap="outerHTML">
+        <div class="form-group">
+          <textarea name="code" rows="12" class="code-input large"
+                    placeholder="# Write your solution here">{% if exercise.latest_attempt %}{{ exercise.latest_attempt.code }}{% elif exercise.starter_code %}{{ exercise.starter_code }}{% endif %}</textarea>
+        </div>
+        <div class="form-row tight">
+          <div class="form-group">
+            <label>Mark as</label>
+            <select name="status">
+              <option value="attempted">Attempted</option>
+              <option value="passed">Passed ✓</option>
+              <option value="skipped">Skipped</option>
+            </select>
+          </div>
+          <div class="form-group grow">
+            <label>Notes <span class="optional">(optional)</span></label>
+            <input type="text" name="notes" placeholder="What did you learn?">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit Attempt</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Right: reference + history -->
+  <div>
+    {% if exercise.reference_solution %}
+    <section class="section">
+      <details class="disclosure">
+        <summary class="section-title">Reference Solution</summary>
+        <pre class="code-block mt">{{ exercise.reference_solution }}</pre>
+      </details>
+    </section>
+    {% endif %}
+
+    {% include "partials/attempt_history.html" %}
+  </div>
+
+</div>
+{% endblock %}
