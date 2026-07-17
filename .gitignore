@@ -49,7 +49,7 @@ Thumbs.db
 .ipynb_checkpoints/
 
 # --- Database ---
-*.db
+ 
 # --- Miscellaneous ---
 *.old
 *.old2
