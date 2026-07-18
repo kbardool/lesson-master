@@ -1,0 +1,38 @@
+# Emails you whenever a push lands on the remote repository.
+#
+# Requires these repository secrets (Settings → Secrets and variables → Actions):
+#   MAIL_USERNAME  SMTP login / sender address (e.g. kbardool@gmail.com)
+#   MAIL_PASSWORD  SMTP password — for Gmail, a 16-char App Password (not your login password)
+#   NOTIFY_TO      recipient address (e.g. kbardool@gmail.com)
+# Optional (default to Gmail):
+#   MAIL_SERVER    SMTP host  (default smtp.gmail.com)
+#   MAIL_PORT      SMTP port  (default 465, SSL)
+name: Notify on push
+
+on:
+  push:
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send push notification email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER || 'smtp.gmail.com' }}
+          server_port: ${{ secrets.MAIL_PORT || '465' }}
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: GitHub Actions <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.NOTIFY_TO }}
+          subject: "[${{ github.event.repository.name }}] Push to ${{ github.ref_name }} by ${{ github.actor }}"
+          body: |
+            A push was made to ${{ github.repository }}.
+
+            Branch:  ${{ github.ref_name }}
+            Pusher:  ${{ github.actor }}
+            Commits: ${{ github.event.compare }}
+
+            Latest commit:
+            ${{ github.event.head_commit.message }}
