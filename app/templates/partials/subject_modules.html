@@ -1,0 +1,37 @@
+<div id="subject-modules">
+  {% if not subject.modules %}
+    <div class="empty-state small">
+      <p class="empty-sub">No modules attached to this subject yet. Attach one above.</p>
+    </div>
+  {% else %}
+    <div class="module-grid">
+      {% for module in subject.modules %}
+      <div class="module-card" id="subject-{{ subject.id }}-module-{{ module.id }}">
+        <div class="module-card-header">
+          <a href="/modules/{{ module.id }}" class="module-name">{{ module.name }}</a>
+          <span class="badge badge-module-{{ module.status }}">{{ module.status }}</span>
+        </div>
+        {% if module.description %}
+          <p class="module-desc">{{ module.description }}</p>
+        {% endif %}
+        <div class="progress-row">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ module.completion_pct }}%"></div>
+          </div>
+          <span class="progress-label">{{ module.done_count }}/{{ module.item_count }} topics</span>
+        </div>
+        <div class="module-card-footer">
+          <a href="/modules/{{ module.id }}" class="btn btn-ghost btn-sm">Open →</a>
+          <button class="btn btn-danger btn-sm"
+                  hx-delete="/subjects/{{ subject.id }}/modules/{{ module.id }}"
+                  hx-target="#subject-modules"
+                  hx-swap="outerHTML"
+                  hx-confirm="Detach '{{ module.name }}' from this subject?">
+            Detach
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

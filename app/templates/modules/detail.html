@@ -1,26 +1,26 @@
 {% extends "base.html" %}
-{% block title %}{{ plan.name }} · Python Learner{% endblock %}
+{% block title %}{{ module.name }} · Lesson Master{% endblock %}
 
 {% block content %}
 <div class="page-header">
   <div>
-    <a href="/plans" class="breadcrumb">Plans</a>
+    <a href="/modules" class="breadcrumb">Modules</a>
     <span class="breadcrumb-sep">/</span>
-    <h1>{{ plan.name }}</h1>
+    <h1>{{ module.name }}</h1>
   </div>
-  <span class="badge badge-plan-{{ plan.status }} large">{{ plan.status }}</span>
+  <span class="badge badge-module-{{ module.status }} large">{{ module.status }}</span>
 </div>
 
-{% if plan.description %}
-  <p class="topic-description">{{ plan.description }}</p>
+{% if module.description %}
+  <p class="topic-description">{{ module.description }}</p>
 {% endif %}
 
 <!-- Overall progress -->
-<div class="plan-progress-bar-large">
+<div class="module-progress-bar-large">
   <div class="progress-bar large">
-    <div class="progress-fill" style="width: {{ plan.completion_pct }}%"></div>
+    <div class="progress-fill" style="width: {{ module.completion_pct }}%"></div>
   </div>
-  <span class="progress-label">{{ plan.completion_pct }}% complete · {{ plan.done_count }}/{{ plan.item_count }} topics done</span>
+  <span class="progress-label">{{ module.completion_pct }}% complete · {{ module.done_count }}/{{ module.item_count }} topics done</span>
 </div>
 
 <!-- Add topic -->
@@ -30,8 +30,8 @@
 </div>
 
 <div id="add-item-form" class="card form-card" style="display:none">
-  <form hx-post="/plans/{{ plan.id }}/items"
-        hx-target="#plan-items"
+  <form hx-post="/modules/{{ module.id }}/topics"
+        hx-target="#module-topics"
         hx-swap="outerHTML"
         hx-on::after-request="toggleForm('add-item-form'); this.reset()">
     <div class="form-row">
@@ -52,7 +52,7 @@
   </form>
 </div>
 
-{% include "partials/plan_items.html" %}
+{% include "partials/module_topics.html" %}
 
 <script>
 function toggleForm(id) {

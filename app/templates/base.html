@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Python Learner{% endblock %}</title>
+  <title>{% block title %}Lesson Master{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,14 +15,17 @@
   <aside class="sidebar">
     <div class="sidebar-header">
       <span class="prompt">&gt;&gt;&gt;</span>
-      <span class="brand">python-learner</span>
+      <span class="brand">lesson-master</span>
     </div>
     <nav>
+      <a href="/subjects" class="nav-item {% if request.url.path.startswith('/subjects') %}active{% endif %}">
+        <span class="nav-prompt">&gt;</span> subjects
+      </a>
+      <a href="/modules" class="nav-item {% if request.url.path.startswith('/modules') %}active{% endif %}">
+        <span class="nav-prompt">&gt;</span> modules
+      </a>
       <a href="/topics" class="nav-item {% if request.url.path.startswith('/topics') %}active{% endif %}">
         <span class="nav-prompt">&gt;</span> topics
-      </a>
-      <a href="/plans" class="nav-item {% if request.url.path.startswith('/plans') %}active{% endif %}">
-        <span class="nav-prompt">&gt;</span> plans
       </a>
     </nav>
     <div class="sidebar-footer">

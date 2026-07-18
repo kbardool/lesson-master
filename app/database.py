@@ -1,8 +1,14 @@
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker, Session
 from typing import Generator
 
-SQLITE_URL = "sqlite:///./python_learner.db"
+# The database lives in ./data. Make sure the directory exists before the
+# engine (or Alembic, which imports this module) tries to open the file.
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+SQLITE_URL = "sqlite:///./data/lesson_master.db"
 
 engine = create_engine(
     SQLITE_URL,

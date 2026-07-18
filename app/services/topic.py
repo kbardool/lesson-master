@@ -37,23 +37,23 @@ def get_all_topics_flat(db: Session) -> list[Topic]:
 
 def get_topics_grouped(db: Session):
     """
-    Returns (plans, orphan_topics) where:
-    - plans: all LearningPlans ordered by creation date, each with .items loaded
-    - orphan_topics: root topics not belonging to any plan, alphabetically
+    Returns (modules, orphan_topics) where:
+    - modules: all Modules ordered by creation date, each with .module_topics loaded
+    - orphan_topics: root topics not belonging to any module, alphabetically
     """
-    from app.models.plan import LearningPlan, PlanItem
+    from app.models.module import Module
 
-    plans = db.query(LearningPlan).order_by(LearningPlan.created_at).all()
+    modules = db.query(Module).order_by(Module.created_at).all()
 
-    # Collect IDs of topics already assigned to at least one plan
-    planned_ids: set[int] = {item.topic_id for plan in plans for item in plan.items}
+    # Collect IDs of topics already assigned to at least one module
+    assigned_ids: set[int] = {mt.topic_id for module in modules for mt in module.module_topics}
 
     orphan_query = db.query(Topic).filter(Topic.parent_id.is_(None))
-    if planned_ids:
-        orphan_query = orphan_query.filter(Topic.id.notin_(planned_ids))
+    if assigned_ids:
+        orphan_query = orphan_query.filter(Topic.id.notin_(assigned_ids))
     orphan_topics = orphan_query.order_by(Topic.name).all()
 
-    return plans, orphan_topics
+    return modules, orphan_topics
 
 
 def get_topic_by_id(db: Session, topic_id: int) -> Optional[Topic]:

@@ -49,7 +49,10 @@ Thumbs.db
 .ipynb_checkpoints/
 
 # --- Database ---
- 
+# Generated SQLite databases (rebuild with `alembic upgrade head` + seed).
+# The legacy python_learner.db was committed before this rule and is kept.
+*.db
+
 # --- Miscellaneous ---
 *.old
 *.old2

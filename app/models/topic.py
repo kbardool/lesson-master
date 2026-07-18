@@ -10,7 +10,7 @@ from app.database import Base
 
 if TYPE_CHECKING:
     from app.models.exercise import Exercise
-    from app.models.plan import PlanItem
+    from app.models.module import ModuleTopic
     from app.models.lesson import TopicLesson
 
 
@@ -38,7 +38,7 @@ class Topic(Base):
     exercises: Mapped[list[Exercise]] = relationship(
         "Exercise", back_populates="topic", cascade="all, delete-orphan", order_by="Exercise.id"
     )
-    plan_items: Mapped[list[PlanItem]] = relationship("PlanItem", back_populates="topic")
+    module_topics: Mapped[list[ModuleTopic]] = relationship("ModuleTopic", back_populates="topic")
     lessons: Mapped[list[TopicLesson]] = relationship(
         "TopicLesson", back_populates="topic", cascade="all, delete-orphan"
     )

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 class Exercise(Base):
-    __tablename__ = "exercises"
+    __tablename__ = "topic_exercises"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     topic_id: Mapped[int] = mapped_column(ForeignKey("topics.id"))
@@ -58,7 +58,7 @@ class ExerciseAttempt(Base):
     __tablename__ = "exercise_attempts"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    exercise_id: Mapped[int] = mapped_column(ForeignKey("exercises.id"))
+    exercise_id: Mapped[int] = mapped_column(ForeignKey("topic_exercises.id"))
     code: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(default="attempted")  # attempted | passed | skipped
     notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)

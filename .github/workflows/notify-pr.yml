@@ -1,0 +1,36 @@
+# Emails you whenever a pull request is opened.
+#
+# Uses the same secrets as notify-push.yml:
+#   MAIL_USERNAME, MAIL_PASSWORD, NOTIFY_TO  (+ optional MAIL_SERVER / MAIL_PORT)
+#
+# Note: for the `pull_request` event, GitHub runs the copy of this workflow that
+# exists on the PR's HEAD branch, so this file must be present on the branch you
+# open the PR from (it is committed to the feature branch for that reason).
+name: Notify on PR opened
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send PR-opened notification email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER || 'smtp.gmail.com' }}
+          server_port: ${{ secrets.MAIL_PORT || '465' }}
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: GitHub Actions <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.NOTIFY_TO }}
+          subject: "[${{ github.event.repository.name }}] PR #${{ github.event.number }} opened: ${{ github.event.pull_request.title }}"
+          body: |
+            A pull request was opened on ${{ github.repository }}.
+
+            Title:  ${{ github.event.pull_request.title }}
+            Author: ${{ github.event.pull_request.user.login }}
+            Branch: ${{ github.event.pull_request.head.ref }} -> ${{ github.event.pull_request.base.ref }}
+            URL:    ${{ github.event.pull_request.html_url }}

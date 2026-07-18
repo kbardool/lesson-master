@@ -1,3 +1,3 @@
-from app.services import topic, exercise, plan, ai, lesson
+from app.services import topic, exercise, module, subject, ai, lesson
 
-__all__ = ["topic", "exercise", "plan", "ai", "lesson"]
+__all__ = ["topic", "exercise", "module", "subject", "ai", "lesson"]

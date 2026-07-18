@@ -1,0 +1,13 @@
+<div id="module-topics">
+  {% if not module.module_topics %}
+    <div class="empty-state small">
+      <p class="empty-sub">No topics in this module yet. Add one above.</p>
+    </div>
+  {% else %}
+    <div class="module-topic-list">
+      {% for item in module.module_topics %}
+        {% include "partials/module_topic_row.html" %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

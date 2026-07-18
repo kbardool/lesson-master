@@ -1,5 +1,5 @@
 <div id="topic-tree">
-  {% if not plans and not orphan_topics %}
+  {% if not modules and not orphan_topics %}
     <div class="empty-state">
       <p class="empty-title">No topics yet.</p>
       <p class="empty-sub">Add your first topic above to get started.</p>
@@ -7,22 +7,22 @@
 
   {% else %}
 
-    {% for plan in plans %}
-      {% if plan.items %}
-      <div class="plan-group">
-        <div class="plan-group-header">
-          <a href="/plans/{{ plan.id }}" class="plan-group-title">{{ plan.name }}</a>
-          <div class="plan-group-meta">
+    {% for module in modules %}
+      {% if module.module_topics %}
+      <div class="module-group">
+        <div class="module-group-header">
+          <a href="/modules/{{ module.id }}" class="module-group-title">{{ module.name }}</a>
+          <div class="module-group-meta">
             <div class="progress-bar" style="width:120px">
-              <div class="progress-fill" style="width:{{ plan.completion_pct }}%"></div>
+              <div class="progress-fill" style="width:{{ module.completion_pct }}%"></div>
             </div>
-            <span class="progress-label">{{ plan.done_count }}/{{ plan.item_count }}</span>
-            <span class="badge badge-plan-{{ plan.status }}">{{ plan.status }}</span>
+            <span class="progress-label">{{ module.done_count }}/{{ module.item_count }}</span>
+            <span class="badge badge-module-{{ module.status }}">{{ module.status }}</span>
           </div>
         </div>
 
         <div class="topic-grid">
-          {% for item in plan.items %}
+          {% for item in module.module_topics %}
             {% set topic = item.topic %}
             <div class="topic-card" id="topic-{{ topic.id }}">
               <div class="topic-card-header">
@@ -62,9 +62,9 @@
     {% endfor %}
 
     {% if orphan_topics %}
-    <div class="plan-group">
-      <div class="plan-group-header">
-        <span class="plan-group-title muted">Other Topics</span>
+    <div class="module-group">
+      <div class="module-group-header">
+        <span class="module-group-title muted">Other Topics</span>
       </div>
       <div class="topic-grid">
         {% for topic in orphan_topics %}

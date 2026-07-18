@@ -1,0 +1,38 @@
+<div id="module-list">
+  {% if not modules %}
+    <div class="empty-state">
+      <p class="empty-title">No modules yet.</p>
+      <p class="empty-sub">Create a module to organize topics into a curriculum.</p>
+    </div>
+  {% else %}
+    <div class="module-grid">
+      {% for module in modules %}
+      <div class="module-card" id="module-{{ module.id }}">
+        <div class="module-card-header">
+          <a href="/modules/{{ module.id }}" class="module-name">{{ module.name }}</a>
+          <span class="badge badge-module-{{ module.status }}">{{ module.status }}</span>
+        </div>
+        {% if module.description %}
+          <p class="module-desc">{{ module.description }}</p>
+        {% endif %}
+        <div class="progress-row">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ module.completion_pct }}%"></div>
+          </div>
+          <span class="progress-label">{{ module.done_count }}/{{ module.item_count }} topics</span>
+        </div>
+        <div class="module-card-footer">
+          <a href="/modules/{{ module.id }}" class="btn btn-ghost btn-sm">Open →</a>
+          <button class="btn btn-danger btn-sm"
+                  hx-delete="/modules/{{ module.id }}"
+                  hx-target="#module-{{ module.id }}"
+                  hx-swap="outerHTML"
+                  hx-confirm="Delete module '{{ module.name }}'?">
+            Delete
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

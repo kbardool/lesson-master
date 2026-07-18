@@ -19,11 +19,11 @@ def _is_htmx(request: Request) -> bool:
 
 @router.get("/", response_class=HTMLResponse)
 def topics_index(request: Request, db: Session = Depends(get_db)):
-    plans, orphan_topics = topic_svc.get_topics_grouped(db)
+    modules, orphan_topics = topic_svc.get_topics_grouped(db)
     all_topics = topic_svc.get_all_topics_flat(db)
     return templates.TemplateResponse(
         request, "topics/index.html",
-        {"plans": plans, "orphan_topics": orphan_topics, "all_topics": all_topics},
+        {"modules": modules, "orphan_topics": orphan_topics, "all_topics": all_topics},
     )
 
 
@@ -45,12 +45,12 @@ def create_topic(
         tags=tags or None,
         parent_id=parent_id or None,
     )
-    plans, orphan_topics = topic_svc.get_topics_grouped(db)
+    modules, orphan_topics = topic_svc.get_topics_grouped(db)
     all_topics = topic_svc.get_all_topics_flat(db)
     if _is_htmx(request):
         return templates.TemplateResponse(
             request, "partials/topic_list.html",
-            {"plans": plans, "orphan_topics": orphan_topics, "all_topics": all_topics},
+            {"modules": modules, "orphan_topics": orphan_topics, "all_topics": all_topics},
         )
     return RedirectResponse("/topics", status_code=303)
 
