@@ -1,0 +1,32 @@
+<div id="subject-list">
+  {% if not subjects %}
+    <div class="empty-state">
+      <p class="empty-title">No subjects yet.</p>
+      <p class="empty-sub">Create a subject to group related modules together.</p>
+    </div>
+  {% else %}
+    <div class="subject-grid">
+      {% for subject in subjects %}
+      <div class="subject-card" id="subject-{{ subject.id }}">
+        <div class="subject-card-header">
+          <a href="/subjects/{{ subject.id }}" class="subject-name">{{ subject.name }}</a>
+          <span class="badge badge-neutral">{{ subject.module_count }} module{{ subject.module_count | pluralize }}</span>
+        </div>
+        {% if subject.description %}
+          <p class="subject-desc">{{ subject.description }}</p>
+        {% endif %}
+        <div class="subject-card-footer">
+          <a href="/subjects/{{ subject.id }}" class="btn btn-ghost btn-sm">Open →</a>
+          <button class="btn btn-danger btn-sm"
+                  hx-delete="/subjects/{{ subject.id }}"
+                  hx-target="#subject-{{ subject.id }}"
+                  hx-swap="outerHTML"
+                  hx-confirm="Delete subject '{{ subject.name }}'?">
+            Delete
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

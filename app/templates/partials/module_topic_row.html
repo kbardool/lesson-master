@@ -1,4 +1,4 @@
-<div class="plan-item-row" id="plan-item-{{ item.id }}">
+<div class="module-topic-row" id="module-topic-{{ item.id }}">
   <span class="item-position">{{ item.position + 1 }}</span>
 
   <div class="item-content">
@@ -8,8 +8,8 @@
 
   <!-- Status cycle: not_started → in_progress → done → not_started -->
   {% set next_status = {'not_started': 'in_progress', 'in_progress': 'done', 'done': 'not_started'} %}
-  <form hx-patch="/plans/items/{{ item.id }}/status"
-        hx-target="#plan-item-{{ item.id }}"
+  <form hx-patch="/modules/topics/{{ item.id }}/status"
+        hx-target="#module-topic-{{ item.id }}"
         hx-swap="outerHTML">
     <input type="hidden" name="status" value="{{ next_status[item.status] }}">
     <button type="submit" class="status-btn status-btn-{{ item.status }}" title="Click to advance status">
@@ -19,10 +19,10 @@
   </form>
 
   <button class="btn btn-danger btn-sm"
-          hx-delete="/plans/items/{{ item.id }}"
-          hx-target="#plan-item-{{ item.id }}"
+          hx-delete="/modules/topics/{{ item.id }}"
+          hx-target="#module-topic-{{ item.id }}"
           hx-swap="outerHTML"
-          hx-confirm="Remove '{{ item.topic.name }}' from this plan?">
+          hx-confirm="Remove '{{ item.topic.name }}' from this module?">
     ×
   </button>
 </div>

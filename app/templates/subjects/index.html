@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Subjects · Lesson Master{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Subjects</h1>
+  <button class="btn btn-primary" onclick="toggleForm('add-subject-form')">+ New Subject</button>
+</div>
+
+<div id="add-subject-form" class="card form-card" style="display:none">
+  <h2 class="card-title">New Subject</h2>
+  <form hx-post="/subjects/"
+        hx-target="#subject-list"
+        hx-swap="outerHTML"
+        hx-on::after-request="toggleForm('add-subject-form'); this.reset()">
+    <div class="form-row">
+      <div class="form-group grow">
+        <label>Subject Name</label>
+        <input type="text" name="name" required placeholder="e.g. Python Advanced Programming">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description <span class="optional">(optional)</span></label>
+      <textarea name="description" rows="3" placeholder="What does this subject cover?"></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Create Subject</button>
+      <button type="button" class="btn btn-ghost" onclick="toggleForm('add-subject-form')">Cancel</button>
+    </div>
+  </form>
+</div>
+
+{% include "partials/subject_list.html" %}
+
+<script>
+function toggleForm(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+{% endblock %}

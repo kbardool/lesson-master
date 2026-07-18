@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ subject.name }} · Lesson Master{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <a href="/subjects" class="breadcrumb">Subjects</a>
+    <span class="breadcrumb-sep">/</span>
+    <h1>{{ subject.name }}</h1>
+  </div>
+</div>
+
+{% if subject.description %}
+  <p class="topic-description">{{ subject.description }}</p>
+{% endif %}
+
+<!-- Attach module -->
+<div class="section-header mt">
+  <h2 class="section-title">Modules</h2>
+  <button class="btn btn-primary" onclick="toggleForm('attach-module-form')">+ Attach Module</button>
+</div>
+
+<div id="attach-module-form" class="card form-card" style="display:none">
+  <form hx-post="/subjects/{{ subject.id }}/modules"
+        hx-target="#subject-modules"
+        hx-swap="outerHTML"
+        hx-on::after-request="toggleForm('attach-module-form'); this.reset()">
+    <div class="form-row">
+      <div class="form-group grow">
+        <label>Module</label>
+        <select name="module_id" required>
+          <option value="">— select a module —</option>
+          {% for m in all_modules %}
+            <option value="{{ m.id }}">{{ m.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions inline">
+        <button type="submit" class="btn btn-primary">Attach</button>
+        <button type="button" class="btn btn-ghost" onclick="toggleForm('attach-module-form')">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% include "partials/subject_modules.html" %}
+
+<script>
+function toggleForm(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+{% endblock %}

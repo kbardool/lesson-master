@@ -247,28 +247,32 @@ nav { padding: 1rem 0; flex: 1; }
 .subtopic-card:hover { border-color: var(--primary); color: var(--primary); }
 .subtopic-card-name { font-weight: 500; }
 
-/* ── Plan grid ───────────────────────────────────────── */
-.plan-grid {
+/* ── Module / Subject grid ───────────────────────────── */
+.module-grid,
+.subject-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
 }
-.plan-card {
+.module-card,
+.subject-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.1rem 1.25rem;
 }
-.plan-card-header {
+.module-card-header,
+.subject-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: .5rem;
 }
-.plan-name { font-weight: 600; font-size: 1rem; color: var(--text); }
-.plan-name:hover { color: var(--primary); }
-.plan-desc { font-size: .85rem; color: var(--text-dim); margin-bottom: .75rem; }
-.plan-card-footer {
+.module-name, .subject-name { font-weight: 600; font-size: 1rem; color: var(--text); }
+.module-name:hover, .subject-name:hover { color: var(--primary); }
+.module-desc, .subject-desc { font-size: .85rem; color: var(--text-dim); margin-bottom: .75rem; }
+.module-card-footer,
+.subject-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -292,11 +296,11 @@ nav { padding: 1rem 0; flex: 1; }
   transition: width .3s ease;
 }
 .progress-label { font-size: .75rem; color: var(--text-muted); white-space: nowrap; font-family: var(--font-ui); }
-.plan-progress-bar-large { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.module-progress-bar-large { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
 
-/* ── Plan items ──────────────────────────────────────── */
-.plan-item-list { display: flex; flex-direction: column; gap: .35rem; }
-.plan-item-row {
+/* ── Module topics ───────────────────────────────────── */
+.module-topic-list { display: flex; flex-direction: column; gap: .35rem; }
+.module-topic-row {
   display: flex;
   align-items: center;
   gap: .75rem;
@@ -306,7 +310,7 @@ nav { padding: 1rem 0; flex: 1; }
   padding: .6rem 1rem;
   transition: border-color .15s;
 }
-.plan-item-row:hover { border-color: var(--border-2); }
+.module-topic-row:hover { border-color: var(--border-2); }
 .item-position {
   font-family: var(--font-ui);
   font-size: .75rem;
@@ -410,9 +414,9 @@ details > summary::-webkit-details-marker { display: none; }
 .badge-advanced     { background: #3a1a1a; color: #f87171; }
 .badge-neutral      { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border); }
 
-.badge-plan-active    { background: #1a2e3a; color: var(--info); }
-.badge-plan-paused    { background: var(--surface-2); color: var(--text-muted); }
-.badge-plan-completed { background: #0d3327; color: var(--success); }
+.badge-module-active    { background: #1a2e3a; color: var(--info); }
+.badge-module-paused    { background: var(--surface-2); color: var(--text-muted); }
+.badge-module-completed { background: #0d3327; color: var(--success); }
 
 .badge-status-attempted   { background: #3a2e1a; color: var(--warning); }
 .badge-status-passed      { background: #0d3327; color: var(--success); }
@@ -551,10 +555,10 @@ select option { background: var(--surface); }
 .empty-title { font-weight: 600; color: var(--text-dim); margin-bottom: .35rem; }
 .empty-sub { font-size: .85rem; color: var(--text-muted); }
 
-/* ── Plan groups (Topics page) ───────────────────────── */
-.plan-group { margin-bottom: 2.5rem; }
+/* ── Module groups (Topics page) ─────────────────────── */
+.module-group { margin-bottom: 2.5rem; }
 
-.plan-group-header {
+.module-group-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -563,7 +567,7 @@ select option { background: var(--surface); }
   padding-bottom: .6rem;
   border-bottom: 1px solid var(--border);
 }
-.plan-group-title {
+.module-group-title {
   font-family: var(--font-ui);
   font-size: .95rem;
   font-weight: 600;
@@ -571,9 +575,9 @@ select option { background: var(--surface); }
   text-decoration: none;
   letter-spacing: -.01em;
 }
-.plan-group-title:hover { color: var(--primary); }
-.plan-group-title.muted { color: var(--text-muted); cursor: default; }
-.plan-group-meta {
+.module-group-title:hover { color: var(--primary); }
+.module-group-title.muted { color: var(--text-muted); cursor: default; }
+.module-group-meta {
   display: flex;
   align-items: center;
   gap: .6rem;

@@ -1,0 +1,412 @@
+{
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Python Advanced Programming",
+      "description": "Master the inner workings of Python to build scalable, high-performance applications. Go beyond basic syntax to dominate critical enterprise skills, including advanced debugging techniques, efficient memory management, and concurrent programming with multithreading and multiprocessing. Transform from a proficient coder into an expert developer who writes optimized, production-ready code."
+    }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "name": "Python Debugging",
+      "description": "A structured path from pdb basics through advanced memory and performance debugging. Four phases: Foundations → Tools → Intermediate Techniques → Advanced.",
+      "status": "active",
+      "created_at": "2026-07-08 22:57:40"
+    }
+  ],
+  "subject_modules": [
+    {
+      "subject_id": 1,
+      "module_id": 1
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "name": "pdb basics",
+      "slug": "pdb-basics",
+      "description": "Breakpoints, stepping commands (n/s/c/l/p), and post-mortem debugging with pdb.pm().",
+      "difficulty": "beginner",
+      "tags": "stdlib,debugger",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 2,
+      "name": "breakpoint()",
+      "slug": "breakpoint",
+      "description": "The modern built-in entry point for debugging. Controlling it via the PYTHONBREAKPOINT env var.",
+      "difficulty": "beginner",
+      "tags": "stdlib,debugger",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 3,
+      "name": "Reading tracebacks",
+      "slug": "reading-tracebacks",
+      "description": "Anatomy of a traceback, chained exceptions, __cause__ vs __context__, and ExceptionGroup (3.11+).",
+      "difficulty": "beginner",
+      "tags": "exceptions",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 4,
+      "name": "Logging vs print debugging",
+      "slug": "logging-vs-print-debugging",
+      "description": "The logging module: levels, handlers, formatters, and when to reach for it over print().",
+      "difficulty": "beginner",
+      "tags": "stdlib,logging",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 5,
+      "name": "pdb++ and ipdb",
+      "slug": "pdb-and-ipdb",
+      "description": "Drop-in pdb replacements with syntax highlighting, tab completion, and sticky mode.",
+      "difficulty": "intermediate",
+      "tags": "debugger,tools",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 6,
+      "name": "VS Code debugger",
+      "slug": "vs-code-debugger",
+      "description": "Launch configs, conditional breakpoints, logpoints, watch expressions, and the debug console.",
+      "difficulty": "intermediate",
+      "tags": "tools,ide",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 7,
+      "name": "traceback module",
+      "slug": "traceback-module",
+      "description": "Capturing, formatting, and re-raising exceptions programmatically with the traceback module.",
+      "difficulty": "intermediate",
+      "tags": "stdlib,exceptions",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 8,
+      "name": "warnings module",
+      "slug": "warnings-module",
+      "description": "Issuing, filtering, and turning warnings into errors. The -W flag and PYTHONWARNINGS.",
+      "difficulty": "intermediate",
+      "tags": "stdlib",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 9,
+      "name": "Debugging with pytest",
+      "slug": "debugging-with-pytest",
+      "description": "Using --pdb, -s, pytest.set_trace(), and the pytest-xdist interaction with debugging.",
+      "difficulty": "intermediate",
+      "tags": "testing,debugger",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 10,
+      "name": "sys.settrace and sys.setprofile",
+      "slug": "syssettrace-and-syssetprofile",
+      "description": "How debuggers are implemented. Writing a minimal tracer to understand the trace event model.",
+      "difficulty": "advanced",
+      "tags": "internals,stdlib",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 11,
+      "name": "Inspecting objects",
+      "slug": "inspecting-objects",
+      "description": "dir(), vars(), inspect module, __dict__, __slots__, and repr vs str for debugging.",
+      "difficulty": "intermediate",
+      "tags": "stdlib,introspection",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 12,
+      "name": "Debugging segfaults and C extensions",
+      "slug": "debugging-segfaults-and-c-extensions",
+      "description": "faulthandler for segfaults, gdb with python-gdb.py, and debugging Cython/ctypes code.",
+      "difficulty": "advanced",
+      "tags": "c-extensions,tools",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 13,
+      "name": "Remote debugging with debugpy",
+      "slug": "remote-debugging-with-debugpy",
+      "description": "Attaching VS Code or any DAP client to a running process, including Docker containers.",
+      "difficulty": "advanced",
+      "tags": "debugger,tools",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 14,
+      "name": "Debugging async code",
+      "slug": "debugging-async-code",
+      "description": "asyncio debug mode (PYTHONASYNCIODEBUG), aiomonitor, and diagnosing coroutine lifecycle issues.",
+      "difficulty": "advanced",
+      "tags": "async,debugger",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 15,
+      "name": "Memory debugging",
+      "slug": "memory-debugging",
+      "description": "tracemalloc for allocation tracing, objgraph for reference cycles, and weakref patterns.",
+      "difficulty": "advanced",
+      "tags": "memory,profiling",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    },
+    {
+      "id": 16,
+      "name": "Performance debugging",
+      "slug": "performance-debugging",
+      "description": "cProfile, profile, py-spy for sampling profiling, and reading flame graphs.",
+      "difficulty": "advanced",
+      "tags": "profiling,performance",
+      "parent_id": null,
+      "created_at": "2026-07-08 22:57:40"
+    }
+  ],
+  "module_topics": [
+    {
+      "id": 1,
+      "module_id": 1,
+      "topic_id": 1,
+      "position": 0,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 2,
+      "module_id": 1,
+      "topic_id": 2,
+      "position": 1,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 3,
+      "module_id": 1,
+      "topic_id": 3,
+      "position": 2,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 4,
+      "module_id": 1,
+      "topic_id": 4,
+      "position": 3,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 5,
+      "module_id": 1,
+      "topic_id": 5,
+      "position": 4,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 6,
+      "module_id": 1,
+      "topic_id": 6,
+      "position": 5,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 7,
+      "module_id": 1,
+      "topic_id": 7,
+      "position": 6,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 8,
+      "module_id": 1,
+      "topic_id": 8,
+      "position": 7,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 9,
+      "module_id": 1,
+      "topic_id": 9,
+      "position": 8,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 10,
+      "module_id": 1,
+      "topic_id": 10,
+      "position": 9,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 11,
+      "module_id": 1,
+      "topic_id": 11,
+      "position": 10,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 12,
+      "module_id": 1,
+      "topic_id": 12,
+      "position": 11,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 13,
+      "module_id": 1,
+      "topic_id": 13,
+      "position": 12,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 14,
+      "module_id": 1,
+      "topic_id": 14,
+      "position": 13,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 15,
+      "module_id": 1,
+      "topic_id": 15,
+      "position": 14,
+      "status": "not_started",
+      "notes": null
+    },
+    {
+      "id": 16,
+      "module_id": 1,
+      "topic_id": 16,
+      "position": 15,
+      "status": "not_started",
+      "notes": null
+    }
+  ],
+  "topic_exercises": [
+    {
+      "id": 1,
+      "topic_id": 1,
+      "title": "Set a Breakpoint and Inspect a Variable",
+      "prompt": "Write a function called `compute_sum` that takes a list of numbers and returns their sum. Inside the function, before returning the result, use `pdb.set_trace()` to set a breakpoint. When the debugger pauses, practice using the `p` command to print the value of the list and the running total, then use `c` to continue execution. The function should work correctly and return the sum.\n\nExample:\n  compute_sum([1, 2, 3, 4]) -> 10\n  compute_sum([10, -5, 3]) -> 8\n\nNote: After verifying it works with the debugger, you can comment out the set_trace() line.",
+      "starter_code": "import pdb\n\ndef compute_sum(numbers):\n    \"\"\"\n    Compute the sum of a list of numbers.\n    Use pdb.set_trace() before the return statement to inspect variables.\n    \"\"\"\n    pass\n\nif __name__ == '__main__':\n    result = compute_sum([1, 2, 3, 4])\n    print(f'Sum: {result}')",
+      "reference_solution": "import pdb\n\ndef compute_sum(numbers):\n    \"\"\"\n    Compute the sum of a list of numbers.\n    Use pdb.set_trace() before the return statement to inspect variables.\n    \"\"\"\n    total = 0\n    for num in numbers:\n        total += num\n    pdb.set_trace()  # Use 'p numbers', 'p total', then 'c' to continue\n    return total\n\nif __name__ == '__main__':\n    result = compute_sum([1, 2, 3, 4])\n    print(f'Sum: {result}')",
+      "difficulty": "beginner",
+      "created_at": "2026-07-09 18:36:11"
+    },
+    {
+      "id": 2,
+      "topic_id": 1,
+      "title": "Step Through a Factorial Function with n and s",
+      "prompt": "Write a recursive function called `factorial` that computes the factorial of a non-negative integer n. Add a `pdb.set_trace()` call at the start of the function. When debugging, practice using:\n- `n` (next) to execute the current line without stepping into calls\n- `s` (step) to step INTO recursive calls\n- `l` (list) to see the surrounding source code\n- `p n` to print the current value of n\n\nThe function must return the correct factorial value.\n\nExample:\n  factorial(0) -> 1\n  factorial(5) -> 120",
+      "starter_code": "import pdb\n\ndef factorial(n):\n    \"\"\"\n    Recursively compute the factorial of n.\n    Use pdb.set_trace() at the top to practice n/s/l/p commands.\n    \"\"\"\n    pass\n\nif __name__ == '__main__':\n    print(factorial(4))",
+      "reference_solution": "import pdb\n\ndef factorial(n):\n    \"\"\"\n    Recursively compute the factorial of n.\n    Use pdb.set_trace() at the top to practice n/s/l/p commands.\n    \"\"\"\n    pdb.set_trace()  # Use 'p n', 'l', 'n', 's' to explore\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nif __name__ == '__main__':\n    print(factorial(4))",
+      "difficulty": "beginner",
+      "created_at": "2026-07-09 18:36:11"
+    },
+    {
+      "id": 3,
+      "topic_id": 1,
+      "title": "Use Post-Mortem Debugging to Find a Bug",
+      "prompt": "The function `divide_all` is supposed to divide a starting value by each number in a list sequentially and return the result. However, it contains a bug that causes a ZeroDivisionError at runtime. Your task is:\n1. Implement `divide_all` with the bug intentionally included (dividing by each element including zero).\n2. Wrap the call to `divide_all` in a try/except block.\n3. In the except block, call `pdb.pm()` to start post-mortem debugging on the last exception.\n4. Use `p` and `l` inside the debugger to identify the line and variable that caused the error.\n\nThe list will be [10, 2, 0, 5] and the starting value is 100.\n\nNote: After exploring with pdb.pm(), quit the debugger with `q`.",
+      "starter_code": "import pdb\n\ndef divide_all(start, divisors):\n    \"\"\"\n    Divide start sequentially by each number in divisors.\n    This function has a bug (division by zero) for you to find with pdb.pm().\n    \"\"\"\n    pass\n\nif __name__ == '__main__':\n    try:\n        result = divide_all(100, [10, 2, 0, 5])\n        print(f'Result: {result}')\n    except Exception:\n        # Call pdb.pm() here to start post-mortem debugging\n        pass",
+      "reference_solution": "import pdb\n\ndef divide_all(start, divisors):\n    \"\"\"\n    Divide start sequentially by each number in divisors.\n    This function has a bug (division by zero) for you to find with pdb.pm().\n    \"\"\"\n    result = start\n    for d in divisors:\n        result = result / d  # ZeroDivisionError when d == 0\n    return result\n\nif __name__ == '__main__':\n    try:\n        result = divide_all(100, [10, 2, 0, 5])\n        print(f'Result: {result}')\n    except Exception:\n        pdb.pm()  # Inspect the traceback; use 'p d', 'p result', 'l', then 'q'",
+      "difficulty": "beginner",
+      "created_at": "2026-07-09 18:36:11"
+    },
+    {
+      "id": 4,
+      "topic_id": 1,
+      "title": "Debug a Broken List Filter with Stepping Commands",
+      "prompt": "Write a function `filter_evens` that takes a list of integers and returns a new list containing only the even numbers. Add a breakpoint using `pdb.set_trace()` inside the loop body. Practice using:\n- `n` to step line by line\n- `p num` to print the current number\n- `p num % 2` to evaluate the modulus expression\n- `c` to continue to the next breakpoint iteration\n\nThe function must correctly filter even numbers.\n\nExample:\n  filter_evens([1, 2, 3, 4, 5, 6]) -> [2, 4, 6]\n  filter_evens([7, 9, 11]) -> []",
+      "starter_code": "import pdb\n\ndef filter_evens(numbers):\n    \"\"\"\n    Return a list of only the even numbers from the input list.\n    Add pdb.set_trace() inside the loop to inspect each number.\n    \"\"\"\n    pass\n\nif __name__ == '__main__':\n    print(filter_evens([1, 2, 3, 4, 5, 6]))",
+      "reference_solution": "import pdb\n\ndef filter_evens(numbers):\n    \"\"\"\n    Return a list of only the even numbers from the input list.\n    Add pdb.set_trace() inside the loop to inspect each number.\n    \"\"\"\n    evens = []\n    for num in numbers:\n        pdb.set_trace()  # Use 'p num', 'p num % 2', then 'c' to continue\n        if num % 2 == 0:\n            evens.append(num)\n    return evens\n\nif __name__ == '__main__':\n    print(filter_evens([1, 2, 3, 4, 5, 6]))",
+      "difficulty": "beginner",
+      "created_at": "2026-07-09 18:36:11"
+    },
+    {
+      "id": 5,
+      "topic_id": 1,
+      "title": "Conditional Breakpoint to Catch a Specific Value",
+      "prompt": "Write a function `find_first_negative` that searches through a list of numbers and returns the first negative number it finds, or None if there are no negatives. Inside the loop, add a breakpoint that only triggers when a negative number is found by using an if statement around `pdb.set_trace()`. When the debugger stops, use `p num` to confirm the value and `l` to see the code context, then `c` to finish.\n\nExample:\n  find_first_negative([3, 7, -2, 4, -8]) -> -2\n  find_first_negative([1, 2, 3]) -> None\n\nHint: Use `if num < 0: pdb.set_trace()` as your conditional breakpoint.",
+      "starter_code": "import pdb\n\ndef find_first_negative(numbers):\n    \"\"\"\n    Return the first negative number in the list, or None if none exist.\n    Use a conditional pdb.set_trace() that only triggers for negative numbers.\n    \"\"\"\n    pass\n\nif __name__ == '__main__':\n    print(find_first_negative([3, 7, -2, 4, -8]))\n    print(find_first_negative([1, 2, 3]))",
+      "reference_solution": "import pdb\n\ndef find_first_negative(numbers):\n    \"\"\"\n    Return the first negative number in the list, or None if none exist.\n    Use a conditional pdb.set_trace() that only triggers for negative numbers.\n    \"\"\"\n    for num in numbers:\n        if num < 0:\n            pdb.set_trace()  # Conditional breakpoint: use 'p num', 'l', then 'c'\n            return num\n    return None\n\nif __name__ == '__main__':\n    print(find_first_negative([3, 7, -2, 4, -8]))\n    print(find_first_negative([1, 2, 3]))",
+      "difficulty": "beginner",
+      "created_at": "2026-07-09 18:36:11"
+    }
+  ],
+  "exercise_attempts": [
+    {
+      "id": 1,
+      "exercise_id": 1,
+      "code": "import pdb\n\ndef compute_sum(numbers):\n    \"\"\"\n    Compute the sum of a list of numbers.\n    Use pdb.set_trace() before the return statement to inspect variables.\n    \"\"\"\n    pass\n\nif __name__ == '__main__':\n    result = compute_sum([1, 2, 3, 4])\n    pdb.set_trace()\n    print(f'Sum: {result}')",
+      "status": "attempted",
+      "notes": null,
+      "submitted_at": "2026-07-09 18:38:31"
+    }
+  ],
+  "topic_lessons": [
+    {
+      "id": 1,
+      "topic_id": 1,
+      "level": "basic",
+      "content": "## Overview\n`pdb` is Python's built-in interactive debugger that lets you pause your program and inspect what's happening inside it. Instead of adding dozens of `print()` statements to hunt down bugs, you can step through your code line by line and examine variables in real time. Learning `pdb` basics will save you significant time when tracking down errors in your programs.\n\n## Key Concepts\n\n- **Breakpoint**: A spot in your code where execution pauses so you can inspect the program's state. You set one by adding `import pdb; pdb.set_trace()` (Python 3.6 and earlier) or simply calling `breakpoint()` (Python 3.7+).\n- **Stepping commands**: Once paused at a breakpoint, you type short commands to control execution:\n  - `n` (next) — run the next line, but don't step *into* function calls\n  - `s` (step) — run the next line and *step into* function calls\n  - `c` (continue) — resume running the program until the next breakpoint or the end\n  - `l` (list) — show the surrounding lines of source code so you know where you are\n  - `p <expression>` (print) — evaluate and display any Python expression, like `p my_variable`\n  - `q` (quit) — exit the debugger and stop the program\n- **Post-mortem debugging**: When a program crashes with an unhandled exception, `pdb.pm()` lets you inspect the state of the program *at the moment it crashed*, without needing to re-run it with breakpoints set ahead of time.\n- **The `(Pdb)` prompt**: This is the interactive prompt you see when the debugger is active. Everything you type here is a debugger command (or a Python expression prefixed with `p`).\n\n## Code Examples\n\n### Example 1: Setting a breakpoint with `breakpoint()`\nThis example shows how to pause a running program and inspect variables interactively. Run this script in your terminal (not inside a notebook) to see the `(Pdb)` prompt appear.\n\n```python\n# example1.py\ndef calculate_total(prices):\n    total = 0\n    for price in prices:\n        breakpoint()   # Execution pauses here on the first iteration\n        total += price\n    return total\n\nitems = [10, 25, 5, 40]\nresult = calculate_total(items)\nprint(f\"Total: {result}\")\n\n# --- What to try at the (Pdb) prompt ---\n# p price        -> shows the current value of price\n# p total        -> shows the running total so far\n# n              -> moves to the next line\n# c              -> continues to the next breakpoint (next loop iteration here)\n# q              -> quits the debugger entirely\n```\n\n### Example 2: Using `n` vs `s` to control how deep you go\nThis example highlights the difference between `n` (stay at the same level) and `s` (dive into a function). Try running it and using each command at the prompt.\n\n```python\n# example2.py\ndef double(x):\n    result = x * 2   # <-- 's' will land you HERE; 'n' skips over this\n    return result\n\ndef main():\n    a = 5\n    breakpoint()        # Pauses here\n    b = double(a)       # Try 'n' then restart and try 's' on this line\n    print(f\"b = {b}\")\n\nmain()\n\n# --- Expected behavior ---\n# With 'n': the line `b = double(a)` executes completely; you skip inside double()\n# With 's': you step INTO double() and can inspect `x` and `result` there\n# Use 'l' at any point to see which line you're currently on\n```\n\n### Example 3: Post-mortem debugging with `pdb.pm()`\nWhen a script crashes, you can load it in the Python interactive shell and use `pdb.pm()` to examine the crash site. This is useful when you didn't set breakpoints ahead of time.\n\n```python\n# crash_example.py  -- run this file first to see it crash\ndef divide(a, b):\n    return a / b   # ZeroDivisionError if b == 0\n\nnumbers = [10, 0, 5]\nfor n in numbers:\n    print(divide(100, n))\n```\n\n```python\n# --- Then, in your terminal, open a Python shell and do this ---\n# $ python   (start interactive Python)\n\nimport pdb\nimport crash_example   # This will crash with ZeroDivisionError\n\n# After the crash, immediately run:\npdb.pm()\n\n# You are now dropped into the debugger AT the line that crashed.\n# Try these commands:\n# p a          -> shows the value of a at crash time\n# p b          -> shows the value of b (it will be 0)\n# l            -> shows the surrounding code\n# q            -> exits\n```\n\n## Common Pitfalls\n\n1. **Forgetting to remove `breakpoint()` calls before sharing code.**\n   If you leave `breakpoint()` in your code, anyone who runs it will have their program pause unexpectedly. Always search for `breakpoint()` and `pdb.set_trace()` before committing or sharing your code.\n\n2. **Typing Python expressions directly instead of using `p`.**\n   At the `(Pdb)` prompt, single-letter inputs like `n`, `s`, `c`, `l`, and `q` are debugger commands. If you type `total` hoping to see its value, `pdb` may interpret it as a command and behave unexpectedly. Always use `p total` to evaluate expressions safely.\n\n3. **Running `pdb.pm()` too late.**\n   `pdb.pm()` only works if you call it *immediately after* an unhandled exception occurs in the same Python session. If you restart the interpreter or run another command first, the crash information is gone. Keep your interactive shell open right after the crash and call `pdb.pm()` as your next action.\n\n## Summary\n\n- `pdb` is Python's built-in debugger; use `breakpoint()` to pause your program at any line.\n- At the `(Pdb)` prompt, use `n` to go to the next line, `s` to step into functions, `c` to continue, `l` to see your location, and `p <expr>` to inspect any value.\n- `n` stays at the current function level; `s` dives *inside* called functions — choosing the right one avoids getting lost.\n- `pdb.pm()` lets you debug a crash after it happens without re-running the script, as long as you call it in the same session immediately after the error.\n- Always remove `breakpoint()` calls from your code before sharing it with others.",
+      "created_at": "2026-07-09 19:24:17",
+      "updated_at": "2026-07-10 13:21:31.221282"
+    },
+    {
+      "id": 2,
+      "topic_id": 1,
+      "level": "intermediate",
+      "content": "## Overview\n`pdb` is Python's built-in interactive debugger that lets you pause execution, inspect state, and step through code line by line. Understanding it eliminates the need to litter your code with `print()` statements and gives you precise control when tracking down bugs.\n\n## Key Concepts\n\n- **Setting breakpoints**: Use `import pdb; pdb.set_trace()` (Python 3.6 and earlier style) or the cleaner built-in `breakpoint()` (Python 3.7+) to pause execution at a specific line.\n- **Stepping commands**:\n  - `n` (next) — executes the current line and moves to the next one *without* entering function calls\n  - `s` (step) — like `n`, but *steps into* function calls so you can debug inside them\n  - `c` (continue) — resumes normal execution until the next breakpoint or program end\n  - `l` (list) — shows the surrounding source code (11 lines by default) so you know where you are\n  - `p <expr>` (print) — evaluates and prints any Python expression in the current scope\n- **Post-mortem debugging**: `pdb.pm()` re-opens the debugger at the exact frame where an unhandled exception occurred, letting you inspect state *after* a crash without rerunning with a breakpoint.\n- **The `(Pdb)` prompt**: Once paused, you're in a live Python REPL with full access to all variables in the current scope — you can call functions, reassign variables, and test fixes interactively.\n- **`q` (quit)**: Exits the debugger and raises `BdbQuit`; useful to know so you can escape cleanly.\n\n## Code Examples\n\n### Example 1: Using `breakpoint()` and basic stepping commands\n\nThis example shows a buggy function that produces wrong output. We drop a breakpoint inside to inspect the loop state and find the error.\n\n```python\n# buggy_sum.py\n\ndef sum_evens(numbers):\n    total = 0\n    for n in numbers:\n        breakpoint()          # Execution pauses here each iteration\n        if n % 2:             # BUG: this keeps odds, not evens\n            total += n\n    return total\n\nresult = sum_evens([1, 2, 3, 4, 5])\nprint(f\"Sum of evens: {result}\")\n\n# --- Sample pdb session ---\n# (Pdb) p n          -> prints current value of n (e.g., 1)\n# (Pdb) p total      -> prints running total\n# (Pdb) p n % 2      -> prints 1 (truthy for odd numbers — AHA, the bug!)\n# (Pdb) n            -> move to next line\n# (Pdb) c            -> continue to next breakpoint iteration\n# Fix: change `if n % 2:` to `if n % 2 == 0:`\n```\n\n### Example 2: Using `s` to step into a function call\n\nWhen a bug might be *inside* a helper function, use `s` instead of `n` to follow execution into it.\n\n```python\n# step_into_demo.py\nimport pdb\n\ndef celsius_to_fahrenheit(c):\n    return (c * 9 / 5) + 32          # Imagine this had a subtle bug\n\ndef report_temperature(city, temp_c):\n    pdb.set_trace()                   # Pause before the conversion call\n    temp_f = celsius_to_fahrenheit(temp_c)\n    print(f\"{city}: {temp_f:.1f}°F\")\n\nreport_temperature(\"Oslo\", 0)\n\n# --- pdb session walkthrough ---\n# (Pdb) l            -> shows current source context\n# (Pdb) n            -> executes celsius_to_fahrenheit() as a black box, moves past it\n#                       (use this when you trust the helper)\n#\n# Restart and use:\n# (Pdb) s            -> steps INTO celsius_to_fahrenheit, pausing on its first line\n# (Pdb) p c          -> prints 0 (the argument received)\n# (Pdb) n            -> execute the return statement\n# (Pdb) p temp_f     -> back in report_temperature, inspect the result\n```\n\n### Example 3: Post-mortem debugging with `pdb.pm()`\n\nThis is invaluable when a script crashes unexpectedly in production or testing. Instead of adding breakpoints and rerunning, you call `pdb.pm()` right after the crash.\n\n```python\n# post_mortem_demo.py\nimport pdb\n\ndef parse_config(data):\n    # Simulates processing a config dictionary\n    timeout = data[\"settings\"][\"timeout\"]   # KeyError if structure is wrong\n    return int(timeout) * 1000\n\n# Simulate receiving malformed data\nbad_data = {\"settings\": {}}   # Missing \"timeout\" key\n\ntry:\n    result = parse_config(bad_data)\nexcept Exception:\n    # pdb.pm() inspects the traceback from the *most recent* exception\n    # You can now explore every frame of the call stack at the moment of crash\n    pdb.pm()\n\n# --- pdb session after crash ---\n# (Pdb) l            -> shows the line that raised KeyError\n# (Pdb) p data       -> prints {'settings': {}}  — confirms missing key\n# (Pdb) up           -> move up one frame in the call stack\n# (Pdb) p bad_data   -> inspect the caller's data\n# (Pdb) q            -> quit the debugger\n```\n\n## Common Pitfalls\n\n1. **Forgetting to remove `breakpoint()` before committing**: A stray `breakpoint()` in production code halts execution for every user or CI job. Use a linter rule (`flake8-breakpoint`) or a pre-commit hook to catch these automatically.\n\n2. **Using `n` when you should use `s`**: If a function call is hiding the bug, `n` skips right over it. Developers often spend time wondering why a variable has the wrong value without realizing the bug lives inside a helper they never stepped into. When results look wrong, reach for `s` to drill down.\n\n3. **`pdb.pm()` only works on the *last* unhandled exception**: If you catch an exception, do some work, and then another exception fires, `pdb.pm()` will target the newer one. Also, `pdb.pm()` does nothing in an interactive session if no exception has occurred yet — it will raise `AttributeError: 'NoneType' object`. Always call it immediately in the `except` block or directly after a crash in the REPL.\n\n## Summary\n\n- `breakpoint()` (Python 3.7+) is the modern, clean way to pause execution; `import pdb; pdb.set_trace()` works everywhere.\n- `n` steps *over* function calls; `s` steps *into* them — choosing the right one saves significant debugging time.\n- `p <expr>` evaluates any valid Python expression, making it far more powerful than just printing variable names.\n- `pdb.pm()` enables post-mortem debugging directly from a crash, giving you full stack inspection without needing to reproduce the bug with a new breakpoint.\n- The `(Pdb)` prompt is a full Python REPL — you can mutate state, call functions, and even test a fix live before editing your source file.",
+      "created_at": "2026-07-09 19:28:17",
+      "updated_at": "2026-07-09 19:28:17"
+    },
+    {
+      "id": 3,
+      "topic_id": 1,
+      "level": "advanced",
+      "content": "## Overview\n`pdb` is Python's built-in interactive debugger, allowing you to pause execution, inspect state, and step through code at the bytecode-execution level. Mastering it eliminates the need for scattered `print()` statements and gives you surgical control over program flow. It integrates directly with Python's trace machinery (`sys.settrace`), making it a powerful tool even for diagnosing complex, production-level bugs.\n\n---\n\n## Key Concepts\n\n- **Breakpoints**: Pause execution at a specific line. Set them programmatically with `breakpoint()` (Python 3.7+) or `pdb.set_trace()`, or from within the pdb prompt with `b <lineno>`.\n- **Stepping Commands**:\n  - `n` (next): Execute the current line and stop at the next one in the *same frame* — does **not** descend into function calls.\n  - `s` (step): Execute the current line and stop at the *first possible* occasion — descends into called functions.\n  - `c` (continue): Resume execution until the next breakpoint or program end.\n  - `l` (list): Show source code around the current line (11 lines by default).\n  - `p <expr>` (print): Evaluate and print any Python expression in the current scope.\n- **Post-Mortem Debugging**: After an unhandled exception, call `pdb.pm()` to inspect the traceback's final frame — the program is paused at the crash site with full state intact.\n- **`sys.settrace` Integration**: `pdb` works by registering a trace function via `sys.settrace`. Each call to `n`/`s` temporarily re-arms this hook, which has non-trivial performance overhead in tight loops.\n- **Conditional Breakpoints**: Set with `b <lineno>, <condition>` from the pdb prompt — only pauses when the condition is truthy, preventing noise in loops.\n- **`interact` command**: Drops into a full Python REPL within the current frame, allowing multi-line expressions and temporary variable assignment without leaving pdb.\n\n---\n\n## Code Examples\n\n### Example 1: Programmatic Breakpoints and Stepping Through Logic\n\nThis example embeds a breakpoint inside a recursive function. Running it drops you into pdb mid-execution. Use `s` to descend into recursive calls, `n` to stay at the current frame, and `p depth` or `p result` to inspect variables.\n\n```python\n# debug_recursion.py\nimport pdb\n\ndef factorial(n, depth=0):\n    if depth == 2:\n        pdb.set_trace()  # Pause on the 3rd recursive call\n    if n <= 1:\n        return 1\n    result = n * factorial(n - 1, depth + 1)\n    return result\n\nif __name__ == \"__main__\":\n    print(factorial(6))\n\n# --- At the pdb prompt, try: ---\n# (Pdb) p n           -> inspect current value of n\n# (Pdb) p depth       -> confirm we're at depth=2\n# (Pdb) s             -> step INTO the next factorial() call\n# (Pdb) n             -> step OVER (stay in current frame)\n# (Pdb) l             -> list source around current line\n# (Pdb) b 9, n == 3   -> set a conditional breakpoint at line 9\n# (Pdb) c             -> continue to that conditional breakpoint\n```\n\n---\n\n### Example 2: Post-Mortem Debugging with `pdb.pm()`\n\nWhen an exception crashes your program, `pdb.pm()` re-enters the debugger at the exact frame where the exception occurred. This is invaluable in scripts where you can't easily re-trigger the crash interactively.\n\n```python\n# postmortem_demo.py\nimport pdb\nimport sys\n\ndef parse_config(data):\n    # Bug: assumes \"port\" is always present and always an integer\n    return {\"host\": data[\"host\"], \"port\": int(data[\"port\"])}\n\ndef load_settings():\n    raw = {\"host\": \"localhost\"}  # \"port\" is intentionally missing\n    return parse_config(raw)\n\nif __name__ == \"__main__\":\n    try:\n        settings = load_settings()\n    except Exception:\n        # sys.last_traceback is set automatically by Python's exception handler\n        print(f\"Caught: {sys.exc_info()[1]}\")\n        print(\"Entering post-mortem debugger...\")\n        pdb.pm()  # Drops into pdb AT the line that raised KeyError\n\n# --- At the pdb prompt after crash: ---\n# (Pdb) p data          -> {'host': 'localhost'}\n# (Pdb) p data.keys()   -> dict_keys(['host'])\n# (Pdb) l               -> see the offending line highlighted\n# (Pdb) up              -> move to the calling frame (load_settings)\n# (Pdb) down            -> return to the crash frame\n# (Pdb) q               -> quit debugger\n```\n\n---\n\n### Example 3: Conditional Breakpoints and the `interact` Command\n\nThis example shows how to avoid stopping on every loop iteration by using conditional breakpoints and leveraging `interact` to test a fix live without restarting.\n\n```python\n# conditional_break.py\nimport pdb\n\ndef process_transactions(transactions):\n    total = 0\n    for i, tx in enumerate(transactions):\n        if i == 5:\n            pdb.set_trace()  # Initial unconditional break; we'll refine below\n        amount = tx.get(\"amount\", 0)\n        if amount < 0:\n            amount = 0  # Suspected bug: should we raise instead?\n        total += amount\n    return total\n\ntransactions = [\n    {\"amount\": 100}, {\"amount\": 200}, {\"amount\": -50},\n    {\"amount\": 300}, {\"amount\": -10}, {\"amount\": 999},  # index 5 triggers pdb\n    {\"amount\": 150},\n]\n\nif __name__ == \"__main__\":\n    result = process_transactions(transactions)\n    print(f\"Total: {result}\")\n\n# --- pdb session walkthrough: ---\n# (Pdb) p i, tx                  -> (5, {'amount': 999})\n# (Pdb) b 10, amount < 0         -> set a conditional breakpoint at line 10\n# (Pdb) c                        -> continue; stops ONLY when amount < 0\n# (Pdb) interact                 -> open full REPL in current frame\n#   >>> amount                   -> -10\n#   >>> fixed = max(0, amount)   -> test fix interactively\n#   >>> exit()                   -> return to pdb\n# (Pdb) p total                  -> inspect running total at that point\n# (Pdb) c                        -> resume to end\n```\n\n---\n\n## Common Pitfalls\n\n- **Using `n` when you meant `s` in decorated or property-heavy code**: If a function is wrapped (e.g., `@property`, `@functools.wraps`), `n` will execute the entire chain in one step, skipping all internal logic. Use `s` to descend into the wrapper, then use `u`/`d` (up/down) to navigate frames — otherwise you'll miss where the real bug lives.\n\n- **Leaving `pdb.set_trace()` in production code**: Unlike `breakpoint()`, which respects the `PYTHONBREAKPOINT` environment variable (set to `0` to disable all breakpoints silently), `pdb.set_trace()` **always** halts execution. In a server context this hangs the process indefinitely. Prefer `breakpoint()` in all new code and set `PYTHONBREAKPOINT=0` in production environments.\n\n- **Assuming `pdb.pm()` always has fresh state**: `pdb.pm()` relies on `sys.last_traceback`, which is only set after an *unhandled* exception propagates to the top level or is caught and `sys.exc_info()` is still valid. If you call `pdb.pm()` inside a nested `except` block that re-raises or after another exception has overwritten `sys.last_traceback`, you may be inspecting the wrong frame — always verify with `where` (alias: `bt`) to print the full call stack immediately after entering post-mortem mode.\n\n---\n\n## Summary\n\n- `pdb.set_trace()` / `breakpoint()` pause execution in-place; prefer `breakpoint()` for environment-variable control over activation.\n- `n` stays in the current frame; `s` descends into callees — choosing the wrong one in nested/decorated code wastes significant debugging time.\n- `pdb.pm()` is the fastest path to diagnosing crash sites post-hoc; it drops you directly into the failed frame with all locals intact.\n- Conditional breakpoints (`b <line>, <expr>`) are essential in loops — unconditional breaks in tight iterations are both slow (due to `sys.settrace` overhead) and noisy.\n- The `interact` command turns pdb into a live REPL, letting you prototype fixes and validate assumptions without restarting the program.",
+      "created_at": "2026-07-10 20:23:09",
+      "updated_at": "2026-07-10 20:23:09"
+    },
+    {
+      "id": 4,
+      "topic_id": 5,
+      "level": "basic",
+      "content": "## Overview\n`pdb++` and `ipdb` are enhanced versions of Python's built-in debugger (`pdb`) that make debugging more pleasant and productive. They drop in as direct replacements, meaning you use them exactly like `pdb` but get extras like colorized output, tab completion, and a \"sticky\" display mode that keeps the current code visible as you step through it.\n\n## Key Concepts\n\n- **Drop-in replacement**: Both tools work with the same commands as `pdb` (`n`, `s`, `c`, `p`, etc.), so you don't need to learn new commands — just install and use.\n- **`pdb++` (pdbpp)**: Adds syntax highlighting, tab completion for variable names, and *sticky mode* which pins the source code to the top of the terminal while you debug.\n- **`ipdb`**: Integrates IPython's interface into pdb, giving you IPython-style tab completion, prettier tracebacks, and access to IPython magic commands inside the debugger.\n- **`set_trace()`**: The main entry point — insert `import pdb; pdb.set_trace()` (or the equivalent) into your code to pause execution and drop into the debugger at that line.\n- **`breakpoint()` built-in**: Python 3.7+ introduced `breakpoint()` as a cleaner way to set a breakpoint. You can make it use `pdb++` or `ipdb` automatically by setting an environment variable.\n- **Sticky mode (pdb++ only)**: Activated by typing `sticky` at the debugger prompt; it continuously shows the surrounding source code as you step, making it much easier to track where you are.\n\n## Code Examples\n\n### Example 1 — Installing and using `ipdb` directly\n\nFirst install ipdb, then insert it into any script to pause execution and inspect values.\n\n```python\n# install first: pip install ipdb\n\ndef calculate_discount(price, discount_percent):\n    # We'll pause here to inspect variables\n    import ipdb; ipdb.set_trace()\n    discount = price * (discount_percent / 100)\n    final_price = price - discount\n    return final_price\n\nresult = calculate_discount(200, 15)\nprint(f\"Final price: {result}\")\n\n# When the debugger opens, try these commands:\n#   p price          -> prints the value of price\n#   p discount_percent\n#   n                -> step to the next line\n#   c                -> continue running the program\n```\n\n### Example 2 — Using `breakpoint()` with `ipdb` via environment variable\n\nRather than importing inside your code, set an environment variable once so `breakpoint()` always uses `ipdb`.\n\n```python\n# In your terminal before running the script:\n#   export PYTHONBREAKPOINT=ipdb.set_trace     (Mac/Linux)\n#   set PYTHONBREAKPOINT=ipdb.set_trace        (Windows cmd)\n\ndef find_first_negative(numbers):\n    for i, num in enumerate(numbers):\n        if num < 0:\n            breakpoint()   # drops into ipdb because of the env variable\n            return i\n    return -1\n\ndata = [10, 5, 3, -7, 2]\nindex = find_first_negative(data)\nprint(f\"First negative at index: {index}\")\n\n# Inside the debugger you can type:\n#   p num            -> see the current number\n#   p i              -> see the current index\n#   p numbers        -> see the whole list\n#   n                -> move to the next line\n#   c                -> continue to finish the program\n```\n\n### Example 3 — Using `pdb++` with sticky mode\n\nInstall `pdb++` and it automatically replaces `pdb` — no import changes needed.\n\n```python\n# install first: pip install pdbpp\n# After installing, the standard import still works:\n\ndef process_scores(scores):\n    total = 0\n    for score in scores:\n        import pdb; pdb.set_trace()   # pdb++ takes over automatically\n        total += score\n    average = total / len(scores)\n    return average\n\ngrades = [88, 92, 75, 100, 63]\navg = process_scores(grades)\nprint(f\"Average: {avg}\")\n\n# Once inside the pdb++ prompt, try:\n#   sticky           -> turns on sticky mode (source stays pinned at top)\n#   p total          -> inspect current total\n#   p score          -> inspect current score\n#   n                -> advance one line\n#   c                -> continue to next set_trace() call\n#   sticky           -> type again to turn sticky mode off\n```\n\n## Common Pitfalls\n\n1. **Forgetting to remove `set_trace()` calls before deploying**: A stray `set_trace()` in production code will hang your program waiting for terminal input. Use a linter rule or a pre-commit hook to catch leftover breakpoints before they ship.\n\n2. **`pdb++` not activating because of import order**: `pdb++` works by monkey-patching `pdb` when it is imported. If something else imports `pdb` before `pdbpp` is initialized (rare but possible in complex setups), you may get plain `pdb`. Running `python -m pdb your_script.py` or simply importing `pdbpp` early avoids this.\n\n3. **Confusing `n` (next) and `s` (step)**: `n` runs the current line and moves to the next one *in the same function*, while `s` steps *into* any function called on the current line. New debugger users often use `n` when they mean `s` and miss the logic inside a called function entirely.\n\n## Summary\n\n- `pdb++` and `ipdb` are direct replacements for Python's `pdb` — install them and your existing `pdb.set_trace()` calls automatically get better features.\n- Use `breakpoint()` with the `PYTHONBREAKPOINT` environment variable for a clean, import-free way to choose your debugger.\n- `pdb++`'s sticky mode (`sticky` at the prompt) is especially helpful for keeping track of your position in the source code while stepping.\n- Core debugger commands (`n`, `s`, `c`, `p`) are the same across `pdb`, `pdb++`, and `ipdb` — learning them once works everywhere.\n- Always remove or guard your `set_trace()` / `breakpoint()` calls before committing or deploying code.",
+      "created_at": "2026-07-10 20:24:30",
+      "updated_at": "2026-07-10 20:24:30"
+    }
+  ]
+}
