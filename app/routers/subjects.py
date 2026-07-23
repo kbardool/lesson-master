@@ -8,12 +8,41 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.services import subject as subject_svc
 from app.services import module as module_svc
+from app.services import ai as ai_svc
 
 router = APIRouter(prefix="/subjects", tags=["subjects"])
 
 
 def _is_htmx(request: Request) -> bool:
     return request.headers.get("HX-Request") == "true"
+
+
+@router.post("/generate-description", response_class=HTMLResponse)
+def generate_subject_description(
+    request: Request,
+    name: str = Form(...),
+    description: Optional[str] = Form(None),
+):
+    """
+    Generate a subject description via the LLM from the in-progress create-subject
+    form (subject not yet saved). Returns just the description field partial.
+    """
+    error = None
+    generated = description or ""
+    if not name.strip():
+        error = "Enter a subject name first."
+    else:
+        try:
+            generated = ai_svc.generate_subject_description(name=name, description=description or None)
+        except EnvironmentError as e:
+            error = str(e)
+        except Exception as e:
+            error = f"Failed to generate description: {e}"
+
+    return templates.TemplateResponse(
+        request, "partials/subject_description_field.html",
+        {"name": name, "description": generated, "error": error},
+    )
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -35,9 +64,14 @@ def create_subject(
     subject_svc.create_subject(db, name=name, description=description or None)
     subjects = subject_svc.get_all_subjects(db)
     if _is_htmx(request):
+        # A dedicated event (rather than the generic htmx:afterRequest, which
+        # also fires — unreliably — for the "Generate with AI" request nested
+        # in this form) tells the form to close and reset only on an actual
+        # successful create.
         return templates.TemplateResponse(
             request, "partials/subject_list.html",
             {"subjects": subjects},
+            headers={"HX-Trigger": "subject-created"},
         )
     return RedirectResponse("/subjects", status_code=303)
 

@@ -391,7 +391,7 @@ wheels = [
 
 [[package]]
 name = "lesson-master"
-version = "0.1.0"
+version = "0.3.0"
 source = { virtual = "." }
 dependencies = [
     { name = "alembic" },
@@ -399,6 +399,7 @@ dependencies = [
     { name = "fastapi" },
     { name = "jinja2" },
     { name = "markdown" },
+    { name = "python-dotenv" },
     { name = "python-multipart" },
     { name = "sqlalchemy" },
     { name = "uvicorn", extra = ["standard"] },
@@ -408,6 +409,7 @@ dependencies = [
 dev = [
     { name = "httpx" },
     { name = "pytest" },
+    { name = "pytest-json-ctrf" },
 ]
 
 [package.metadata]
@@ -417,6 +419,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.111.0" },
     { name = "jinja2", specifier = ">=3.1.0" },
     { name = "markdown", specifier = ">=3.0" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
     { name = "python-multipart", specifier = ">=0.0.9" },
     { name = "sqlalchemy", specifier = ">=2.0.0" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.29.0" },
@@ -426,6 +429,7 @@ requires-dist = [
 dev = [
     { name = "httpx", specifier = ">=0.27.0" },
     { name = "pytest", specifier = ">=8.0.0" },
+    { name = "pytest-json-ctrf", specifier = ">=0.5.3" },
 ]
 
 [[package]]
@@ -681,6 +685,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e4/47/b9efed96c114afcfa3c9d3fe98a76a1d14c74a9e266d397cf6eb64be5e01/pytest-9.1.1.tar.gz", hash = "sha256:1088fbde8f2b49d95a549a195707afa7a76a3ce9bcadc26b6d71f0ffda5fe313", size = 1636369, upload-time = "2026-06-19T10:58:32.857Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/24/25/1de2678b631f5a49215c6c96fff41ba892b0a34df68d6d80292b1b48aa7f/pytest-9.1.1-py3-none-any.whl", hash = "sha256:37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c", size = 386536, upload-time = "2026-06-19T10:58:31.347Z" },
+]
+
+[[package]]
+name = "pytest-json-ctrf"
+version = "0.5.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f3/ff/88adcc4a9a9772b330b31c1556c7bf41adc951b1fe6ae6a1ed0241e731ff/pytest_json_ctrf-0.5.3.tar.gz", hash = "sha256:485494504390f382a86ee3d86ffa9b2f55c81223809dca0cc04963c60c3a6466", size = 8871, upload-time = "2026-07-19T17:21:23.757Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6f/65/58c0a5d3114481dea2d339800607be588750b4b9abaedbf79d92a8877e7d/pytest_json_ctrf-0.5.3-py3-none-any.whl", hash = "sha256:27565a1da62ed98e91ffe90b3d6a038b8376822e073a21b3c224344bd9cf4799", size = 7463, upload-time = "2026-07-19T17:21:22.474Z" },
 ]
 
 [[package]]

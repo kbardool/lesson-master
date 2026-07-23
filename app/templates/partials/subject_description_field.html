@@ -1,0 +1,20 @@
+<div id="subject-description-field" class="form-group">
+  <label>Description <span class="optional">(optional)</span></label>
+  <textarea name="description" rows="3"
+            placeholder="What does this subject cover?">{{ description | default("", true) }}</textarea>
+  {% if error %}
+    <p class="error-msg">⚠ {{ error }}</p>
+  {% endif %}
+  <div class="form-actions inline" style="margin-top:.4rem">
+    <button type="button" class="btn btn-ai btn-sm"
+            hx-post="/subjects/generate-description"
+            hx-include="[name='name'],[name='description']"
+            hx-target="#subject-description-field"
+            hx-swap="outerHTML"
+            hx-indicator="#subject-desc-spinner">
+      ✨ Generate with AI
+    </button>
+    <span id="subject-desc-spinner" class="htmx-indicator spinner"></span>
+    <span class="optional">Max 60 words — uses the Name (and this draft, if any).</span>
+  </div>
+</div>

@@ -122,6 +122,44 @@ _LEVEL_GUIDANCE = {
 }
 
 
+def _truncate_to_words(text: str, max_words: int) -> str:
+    """Defensively cap `text` at `max_words` words, in case the model overshoots."""
+    words = text.split()
+    if len(words) <= max_words:
+        return text
+    return " ".join(words[:max_words]).rstrip(",.;:") + "…"
+
+
+def generate_subject_description(name: str, description: str | None = None) -> str:
+    """
+    Generate a subject description (<=60 words) from a subject name and an
+    optional draft description typed so far. Returns the generated text.
+    """
+    draft_note = (
+        f'\n\nThe user has started writing this draft description — refine and '
+        f'build on it rather than ignoring it: "{description}"'
+        if description
+        else ""
+    )
+    prompt = f"""Write a description for a learning subject titled "{name}".{draft_note}
+
+Requirements:
+- Explain what the subject covers and who it's useful for
+- Engaging, professional tone suitable for a curriculum catalog
+- No more than 60 words
+
+Return only the description text. No preamble, no quotes, no markdown."""
+
+    client = _get_client()
+    message = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=300,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    generated = message.content[0].text.strip()
+    return _truncate_to_words(generated, 60)
+
+
 def generate_lesson(
     topic_name: str,
     description: str | None,
