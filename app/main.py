@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+load_dotenv()  # load ANTHROPIC_API_KEY (and any other local secrets) from .env, if present
+
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles

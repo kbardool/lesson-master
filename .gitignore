@@ -53,6 +53,12 @@ Thumbs.db
 # The legacy python_learner.db was committed before this rule and is kept.
 *.db
 
+# Generated database backups (see utils/backup_database.py).
+backups/*.json
+
+# --- Test reports ---
+ctrf.json
+
 # --- Miscellaneous ---
 *.old
 *.old2
